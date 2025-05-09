@@ -2,7 +2,7 @@ using AutoMapper;
 using Coupon.Api;
 using Coupon.Api.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

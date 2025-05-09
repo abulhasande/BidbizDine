@@ -3,13 +3,10 @@ using Coupon.Api.Data;
 using Coupon.Api.Models;
 using Coupon.Api.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using Microsoft.OpenApi.Any;
-using static Azure.Core.HttpHeader;
 
 namespace Coupon.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/coopon")]
     [ApiController]
     public class CooponController : ControllerBase
     {
@@ -120,7 +117,7 @@ namespace Coupon.Api.Controllers
             return responseDto;
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public ResponseDto DeleteCoopon(int  id)
         {
 
