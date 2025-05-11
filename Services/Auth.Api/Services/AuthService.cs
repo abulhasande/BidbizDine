@@ -52,7 +52,8 @@ namespace Auth.Api.Services
             }
 
             //if user is found, Generarate JWT token
-            var token = _jwtTokenGenerator.GenerateJwtToken(user);
+            var roles = await _userManager.GetRolesAsync(user);
+            var token = _jwtTokenGenerator.GenerateJwtToken(user, roles);
 
             UserDto userDto = new()
             {

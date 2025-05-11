@@ -2,7 +2,6 @@
 using Dine.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace Dine.Web.Controllers
 {

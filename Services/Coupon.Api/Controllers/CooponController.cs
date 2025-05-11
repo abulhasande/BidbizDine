@@ -2,12 +2,14 @@
 using Coupon.Api.Data;
 using Coupon.Api.Models;
 using Coupon.Api.Models.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Coupon.Api.Controllers
 {
     [Route("api/coopon")]
     [ApiController]
+    [Authorize]
     public class CooponController : ControllerBase
     {
         private readonly CooponDbContext dbContext;
@@ -77,6 +79,7 @@ namespace Coupon.Api.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles ="ADMIN")]
         public ResponseDto CreateCoopon([FromBody] CooponDto cooponDto)
         {
 
@@ -98,6 +101,7 @@ namespace Coupon.Api.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDto UpdateCoopon([FromBody] CooponDto cooponDto)
         {
 
@@ -118,6 +122,7 @@ namespace Coupon.Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDto DeleteCoopon(int  id)
         {
 
