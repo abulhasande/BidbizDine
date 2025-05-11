@@ -5,7 +5,9 @@ namespace Products.Api.Data
 {
     public class ProductDbContext : DbContext
     {
-        protected ProductDbContext( DbContextOptions<ProductDbContext> options) : base(options) { }
+        public ProductDbContext(DbContextOptions<ProductDbContext> options) : base(options)
+        {
+        }
 
         public DbSet<Product> Products {  get; set; }
 
