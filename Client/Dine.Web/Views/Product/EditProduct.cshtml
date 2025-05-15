@@ -5,6 +5,7 @@
     <div class="container border p-3">
         <h1 class="text-white text-center">Edit Product</h1>
         <input hidden asp-for="ProductId" />
+@*         <input hidden asp-for="ImageUrl" value="demoimage.png" /> *@
         <hr />
         <div class="row">
             <div class="col-10">
@@ -37,15 +38,15 @@
                         <input asp-for="Price" class="form-control" />
                         <span asp-validation-for="Price" class="text-danger"></span>
                     </div>
-@*                     <div class="col-2">
+                    <div class="col-2">
                         <label class="control-label pt-2" style="font-size:20px;">ImageUrl</label>
-                    </div> *@
-                    @* <div class="col-10 pb-3">
+                    </div> 
+                     <div class="col-10 pb-3">
                         <input asp-for="Image" class="form-control" />
                         <input asp-for="ImageUrl" hidden class="form-control" />
                         <input asp-for="ImageLocalPath" hidden class="form-control" />
                         <span asp-validation-for="Image" class="text-danger"></span>
-                    </div> *@
+                    </div>
 
                     <div class="col-5 offset-2">
 

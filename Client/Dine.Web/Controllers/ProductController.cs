@@ -135,6 +135,11 @@ namespace Dine.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> EditProduct(ProductDto productDto)
         {
+            // skip
+            if (string.IsNullOrEmpty(productDto.ImageUrl)) { productDto.ImageUrl = "demoimgae.png";  }
+            //
+
+
             if (ModelState.IsValid)
             {
                 ResponseDto? response = await _productService.UpdateProductAsync(productDto);
