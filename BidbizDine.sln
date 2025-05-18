@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Api", "Services\Auth.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Products.Api", "Services\Product.Api\Products.Api.csproj", "{30787CF4-3995-4B0C-AAFE-EAF8F1422075}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCart.Api", "Services\ShoppingCart.Api\ShoppingCart.Api.csproj", "{E001E174-EBAD-41A0-B0E8-DB7B6C593984}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{30787CF4-3995-4B0C-AAFE-EAF8F1422075}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30787CF4-3995-4B0C-AAFE-EAF8F1422075}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30787CF4-3995-4B0C-AAFE-EAF8F1422075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E001E174-EBAD-41A0-B0E8-DB7B6C593984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E001E174-EBAD-41A0-B0E8-DB7B6C593984}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E001E174-EBAD-41A0-B0E8-DB7B6C593984}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E001E174-EBAD-41A0-B0E8-DB7B6C593984}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,5 +56,6 @@ Global
 		{970F08B7-0C1C-4DD7-9018-4924F2825D99} = {59E1E29E-5A1B-437A-8176-227495D3B259}
 		{41728886-0303-4CBB-80E7-265E3672BF2E} = {F99C01AF-95CC-4564-B1CA-3DADDF2567F3}
 		{30787CF4-3995-4B0C-AAFE-EAF8F1422075} = {F99C01AF-95CC-4564-B1CA-3DADDF2567F3}
+		{E001E174-EBAD-41A0-B0E8-DB7B6C593984} = {F99C01AF-95CC-4564-B1CA-3DADDF2567F3}
 	EndGlobalSection
 EndGlobal
