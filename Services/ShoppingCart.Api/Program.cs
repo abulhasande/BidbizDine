@@ -6,6 +6,7 @@ using ShoppingCart.Api;
 using ShoppingCart.Api.Data;
 using ShoppingCart.Api.Extensions;
 using ShoppingCart.Api.Service;
+using ShoppingCart.Api.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,10 +21,15 @@ IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-builder.Services.AddHttpClient("Product", p => p.BaseAddress = new Uri(builder.Configuration["ServiceUrls:ProductAPI"]));
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<BackendApiAuthenticationHttpClientHandler>();
+
+builder.Services.AddHttpClient("Product", p => p.BaseAddress = new Uri(builder.Configuration["ServiceUrls:ProductAPI"]))
+                .AddHttpMessageHandler<BackendApiAuthenticationHttpClientHandler>();
 builder.Services.AddScoped<IProductService, ProductService>();
 
-builder.Services.AddHttpClient("Coopon", p => p.BaseAddress = new Uri(builder.Configuration["ServiceUrls:CooponAPI"]));
+builder.Services.AddHttpClient("Coopon", p => p.BaseAddress = new Uri(builder.Configuration["ServiceUrls:CooponAPI"]))
+                .AddHttpMessageHandler<BackendApiAuthenticationHttpClientHandler>();
 builder.Services.AddScoped<ICouponService, CouponService>();
 
 builder.Services.AddControllers();

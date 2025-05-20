@@ -1,4 +1,4 @@
-﻿namespace ShoppingCart.Api.Models.Dto
+﻿namespace Dine.Web.Models
 {
     public class CartDto
     {

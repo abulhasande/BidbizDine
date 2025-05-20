@@ -9,7 +9,7 @@ namespace Coupon.Api.Controllers
 {
     [Route("api/coopon")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class CooponController : ControllerBase
     {
         private readonly CooponDbContext dbContext;

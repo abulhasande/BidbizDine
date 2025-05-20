@@ -5,7 +5,6 @@ using ShoppingCart.Api.Data;
 using ShoppingCart.Api.Models;
 using ShoppingCart.Api.Models.Dto;
 using ShoppingCart.Api.Service;
-using System.Reflection.PortableExecutable;
 
 namespace ShoppingCart.Api.Controllers
 {
@@ -32,6 +31,7 @@ namespace ShoppingCart.Api.Controllers
 
         [HttpGet("GetCart/{userId}")]
         public async Task<ResponseDto> GetCart(string userId)
+        
         {
             try
             {

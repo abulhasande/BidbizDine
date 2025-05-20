@@ -13,13 +13,16 @@ builder.Services.AddHttpClient();
 builder.Services.AddHttpClient<ICooponService, CooponService>();
 builder.Services.AddHttpClient<IAuthService, AuthService>();
 builder.Services.AddHttpClient<IProductService, ProductService>();
+builder.Services.AddHttpClient<IShoppingCartService, ShoppingCartService>();
 
 SD.CooponAPIBase = builder.Configuration["ServiceUrls:CooponAPI"];
 SD.AuthAPIBase = builder.Configuration["ServiceUrls:AuthAPI"];
-SD.ProductAPIBase = builder.Configuration["ServiceUrls:ProductAPI"]; 
+SD.ProductAPIBase = builder.Configuration["ServiceUrls:ProductAPI"];
+SD.ShoppingCartAPIBase = builder.Configuration["ServiceUrls:ShoppingCartAPI"];
 
 builder.Services.AddScoped<IBaseService, BaseService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
 builder.Services.AddScoped<ICooponService, CooponService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITokenProvider, TokenProvider>();
