@@ -65,6 +65,23 @@ namespace Dine.Web.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> EmailCart(CartDto cartDto)
+        {
+            CartDto cart = await LoadCartDtoBaseOnLoggedInUser();
+            cart.CartHeader.Email = User.Claims.Where(u => u.Type == JwtRegisteredClaimNames.Email)?.FirstOrDefault()?.Value;
+            ResponseDto? responseDto = await _shoppingCartService.EmailCart(cartDto);
+
+            if (responseDto != null && responseDto.IsSuccess)
+            {
+                TempData["success"] = "Email Will be processed and sent shortly";
+                return RedirectToAction(nameof(CartIndex));
+            }
+
+            return View();
+        }
+
+
+        [HttpPost]
         public async Task<IActionResult> RemoveCoupon(CartDto cartDto)
         {
             cartDto.CartHeader.CouponCode = string.Empty; 
@@ -79,5 +96,18 @@ namespace Dine.Web.Controllers
 
             return View();
         }
+
+        //private async Task<CartDto> LoadCartDtoBasedOnLoggedInUser()
+        //{
+        //    var userId = User.Claims.Where(u => u.Type == JwtRegisteredClaimNames.Sub)?.FirstOrDefault()?.Value;
+        //    ResponseDto? response = await _shoppingCartService.GetCartByUserIdAsync(userId);
+        //    if(response != null && response.IsSuccess)
+        //    {
+        //        CartDto cartDto = JsonConvert.DeserializeObject<CartDto>(Convert.ToString(response.Result));
+        //        return cartDto;
+        //    }
+
+        //    return new CartDto();
+        //}
     }
 }

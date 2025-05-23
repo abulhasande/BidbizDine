@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using Dine.MessageBus;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using ShoppingCart.Api.Data;
 using ShoppingCart.Api.Models;
 using ShoppingCart.Api.Models.Dto;
@@ -17,15 +19,20 @@ namespace ShoppingCart.Api.Controllers
         private readonly ShoppingCartDbContext _dbContext;
         private readonly IProductService _productService;
         private readonly ICouponService _couponService;
+        private readonly IMessageBus _messageBus;
+        private readonly IConfiguration _configuration; 
         public CartController(IMapper mapper, ShoppingCartDbContext dbContext, 
             IProductService productService, 
-            ICouponService couponService)
+            ICouponService couponService,
+            IMessageBus messageBus, IConfiguration configuration)
         {
             _mapper = mapper;
             _dbContext = dbContext;
             _responseDto = new ResponseDto();
             _productService = productService;
-            _couponService = couponService; 
+            _couponService = couponService;
+            _messageBus = messageBus;
+            _configuration = configuration;
         }
 
 
@@ -81,6 +88,25 @@ namespace ShoppingCart.Api.Controllers
                 _dbContext.Update(cartFromDb);
 
                 await _dbContext.SaveChangesAsync();
+
+                _responseDto.Result = true;
+            }
+            catch (Exception ex)
+            {
+
+                _responseDto.Message = ex.Message.ToString();
+                _responseDto.IsSuccess = false;
+            }
+
+            return _responseDto;
+        }
+
+        [HttpPost("EmailCartRequest")]
+        public async Task<object> EmailCartRequest([FromBody] CartDto cartDto)
+        {
+            try
+            {
+                await _messageBus.PublishMessage(cartDto, _configuration.GetValue<string>("TopicAndQueueNames:EmailShoppingCart"));
 
                 _responseDto.Result = true;
             }
