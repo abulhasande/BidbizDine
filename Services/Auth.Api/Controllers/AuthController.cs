@@ -1,6 +1,8 @@
 ﻿using Auth.Api.Models.Dto;
 using Auth.Api.Services;
+using Dine.MessageBus;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace Auth.Api.Controllers
 {
@@ -9,11 +11,16 @@ namespace Auth.Api.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
+        private readonly IMessageBus _messageBus;
+        private readonly IConfiguration _confiuration; 
+
         protected ResponseDto _response;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IAuthService authService, IMessageBus messageBus, IConfiguration confiuration)
         {
             _authService = authService;
+            _messageBus = messageBus;
+            _confiuration = confiuration;
             _response = new();
         }
 
@@ -27,6 +34,8 @@ namespace Auth.Api.Controllers
                 _response.Message = errorMessage;
                 return BadRequest(_response);
             }
+            await _messageBus.PublishMessage(model.Email, 
+                                            _confiuration.GetValue<string>("TopicAndQueueNames:RegisterUserQueue"));
 
             return Ok(_response);
         }

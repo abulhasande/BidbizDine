@@ -22,6 +22,12 @@ namespace Dine.Web.Controllers
             return View(await LoadCartDtoBaseOnLoggedInUser());
         }
 
+        [Authorize]
+        public async Task<IActionResult> Checkout()
+        {
+            return View(await LoadCartDtoBaseOnLoggedInUser());
+        }
+
         private async Task<CartDto> LoadCartDtoBaseOnLoggedInUser()
         {
             var userId = User.Claims.Where(u => u.Type == JwtRegisteredClaimNames.Sub)?.FirstOrDefault()?.Value;

@@ -1,6 +1,7 @@
 using Auth.Api.Data;
 using Auth.Api.Models;
 using Auth.Api.Services;
+using Dine.MessageBus;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,7 @@ builder.Services.AddIdentity<ApplicationUser,  IdentityRole>()
                 .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IMessageBus, MessageBus>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
 builder.Services.AddControllers();
